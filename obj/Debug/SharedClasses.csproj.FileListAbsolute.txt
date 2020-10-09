@@ -1,7 +1,0 @@
-C:\SourceCode\SharedClasses\bin\Debug\SharedClasses.dll
-C:\SourceCode\SharedClasses\bin\Debug\SharedClasses.pdb
-C:\SourceCode\Extensions\SharedClasses.dll
-C:\SourceCode\Extensions\SharedClasses.pdb
-C:\SourceCode\SharedClasses\obj\Debug\SharedClasses.csproj.CoreCompileInputs.cache
-C:\SourceCode\SharedClasses\obj\Debug\SharedClasses.dll
-C:\SourceCode\SharedClasses\obj\Debug\SharedClasses.pdb
