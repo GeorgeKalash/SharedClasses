@@ -9,6 +9,98 @@ namespace SharedClasses
 {
     public static class DateTools
     {
+
+        public class DateRange
+        {
+            DateTime startDate;
+            DateTime endDate;
+            public short yearDays, monthDays;
+            public int delY, delM, delD;
+
+            public static short eom(short _year, short _month)
+            {
+                if (_month == 1 || _month == 3 || _month == 5 || _month == 7 || _month == 8 || _month == 10 || _month == 12)
+                    return 31;
+
+                if (_month == 4 || _month == 6 || _month == 9 || _month == 11)
+                    return 30;
+
+                if (_year % 4 == 0)
+                    return 29;
+
+                return 28;
+
+            }
+
+            private void setDeltas()
+            {
+                int Y2, M2;
+                M2 = endDate.Month;
+                Y2 = endDate.Year;
+                delD = endDate.Day - startDate.Day;
+
+                if (delD < 0)
+                {
+                    delD = monthDays + delD;
+                    M2 = M2 - 1;
+                }
+
+                delM = M2 - startDate.Month;
+
+                if (delM < 0)
+                {
+                    delM = 12 + delM;
+                    Y2 = Y2 - 1;
+                }
+
+                delY = Y2 - startDate.Year;
+            }
+
+            public DateRange()
+            {
+                startDate = endDate = DateTime.Now;
+            }
+
+            public DateRange(DateTime _startDate, DateTime _endDate, short _yearDays = 360, short _monthDays = 30)
+            {
+                startDate = _startDate;
+                endDate = _endDate;
+                yearDays = (short)_yearDays;
+                monthDays = (short)_monthDays;
+                setDeltas();
+            }
+
+            public void setCalDays(short _yearDays, short _monthDays)
+            {
+                yearDays = _yearDays;
+                monthDays = _monthDays;
+            }
+
+            public int periodDays(DateTime? _startDate = null, DateTime? _endDate = null)
+            {
+                if (_startDate != null)
+                    startDate = (DateTime)_startDate;
+                if (_endDate != null)
+                    endDate = (DateTime)_endDate;
+                setDeltas();
+                return delY * yearDays + delM * monthDays + delD;
+            }
+
+            public string formatPeriod()
+            {
+                string periodText = "";
+
+                if (delY != 0)
+                    periodText = String.Format("{0}y", delY);
+                if (delM != 0)
+                    periodText += String.Format(" {0}m", delM);
+                if (delD != 0)
+                    periodText += String.Format(" {0}d", delD);
+                return periodText.TrimStart(' ');
+            }
+
+        }
+
         public struct TimeRange
         {
             public string from, to;
