@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SharedClasses
 {
-    public class DateTools
+    public static class DateTools
     {
         public struct TimeRange
         {
@@ -16,6 +16,41 @@ namespace SharedClasses
         }
 
         public const string midnight = "00:00";
+
+        public static string defaultValue(string value)
+        {
+            switch (value)
+            {
+                case "@@today":
+                    return DateTime.Now.ToString("yyyyMMdd");
+                case "@@yesterday":
+                    return DateTime.Now.AddDays(-1).ToString("yyyyMMdd");
+                case "@@bow":
+                    return weekStart(DateTime.Now).ToString("yyyyMMdd");
+                case "@@eow":
+                    return eow(DateTime.Now).ToString("yyyyMMdd");
+                case "@@bom":
+                    return bom(DateTime.Now).ToString("yyyyMMdd");
+                case "@@boq":
+                    return boq(DateTime.Now).ToString("yyyyMMdd");
+                case "@@bod":
+                    {
+                        DateTime? beginningOfTheDay = bod(DateTime.Now);
+                        return beginningOfTheDay == null ? string.Empty : ((DateTime)beginningOfTheDay).ToString("yyyyMMdd hh:mm");
+                    }
+                case "@@eod":
+                    {
+                        DateTime? eod = endOfDay(DateTime.Now);
+                        return eod == null ? string.Empty : ((DateTime)eod).ToString("yyyyMMdd hh:mm");
+                    }
+                case "@@eom":
+                    return endOfMonth(DateTime.Now).ToString("yyyyMMdd");
+                case "@@eoq":
+                    return endOfQuarter(DateTime.Now).ToString("yyyyMMdd");
+            }
+            return value;
+        }
+
         public static short? hour(string _time)
         {
             short hour;
@@ -93,12 +128,26 @@ namespace SharedClasses
         {
             DayOfWeek day = date.DayOfWeek;
             int days = day - DayOfWeek.Monday;
+            if (days == -1)
+                days = 6;
             return date.AddDays(-days);
+        }
+        public static DateTime eow(DateTime date)
+        {                        
+            return weekStart(date).AddDays(6);
         }
         public static DateTime endOfHalfMonth(DateTime date)
         {
             return date.Day < 15 ? new DateTime(date.Year, date.Month, 15) : endOfMonth(date);
         }
+
+        public static DateTime boq(DateTime date)
+        {
+            decimal quarter = date.Month / 3;
+            int month = (int)(3 * Math.Floor(quarter));
+            return bom(date);
+        }
+
         public static DateTime endOfQuarter(DateTime date)
         {
             decimal quarter = date.Month / 3;
@@ -139,7 +188,7 @@ namespace SharedClasses
         {
             return dateTime(dayId(_date), "23:59");
         }
-        public DateTime? endOfDate(string _key)
+        public static DateTime? endOfDate(string _key)
         {
             DateTime? dt = date(_key);
             return dt != null ? endOfDay((DateTime)dt) : (DateTime?)null;
