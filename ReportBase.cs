@@ -22,7 +22,6 @@ namespace SharedClasses
         public string data;
         public SharedClasses.Language languageId;
         public Dictionary<string, string> labels;
-        private Dictionary<string, string> parameters;
         private string rootAPI;
         private int? accountId;
 
@@ -42,10 +41,6 @@ namespace SharedClasses
         {
         }
 
-        public void setParams(Dictionary<string, string> _parameters)
-        {
-            parameters = _parameters;
-        }
         public void setReportData(string _jsonBody)
         {
             data = _jsonBody;
