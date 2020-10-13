@@ -7,6 +7,18 @@ namespace SharedClasses
 {
     public class ReportBase
     {
+        public class QryStructure<T>
+        {
+            public int count;
+            public List<T> list;
+        }
+        public class GetStructure<T>
+        {
+            public T record;
+            public int statusId;
+            public string message;
+        }
+
         public string data;
         public SharedClasses.Language languageId;
         public Dictionary<string, string> labels;
