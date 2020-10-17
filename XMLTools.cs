@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
@@ -49,6 +50,17 @@ namespace SharedClasses
                 reader.Close();
             }
             return list;
+        }
+        public static void saveDict(string _rootName, string _recordName, Dictionary<string, string> _dict, string _fileName)
+        {
+            string xml = string.Format("<?xml version=\"1.0\" encoding=\"utf-8\" ?> \r\n <{0}> \r\r", _rootName);
+
+            foreach (KeyValuePair<string, string> kv in _dict)
+                xml += string.Format("<{0} key = \"{1}\" value = \"{2}\" > </{0}>\r\n", _recordName, kv.Key, kv.Value);
+
+            xml += string.Format("</{0}> \r\r", _rootName);
+
+               File.WriteAllText(_fileName, xml);
         }
     }
 }

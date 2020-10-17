@@ -20,10 +20,10 @@ namespace SharedClasses
         }
 
         public string data;
-        public SharedClasses.Language languageId;
+        public string languageId;
         public Dictionary<string, string> labels;
         private string rootAPI;
-        private int? accountId;
+        private string accountId;
 
         public string companyLogoUrl
         {
@@ -45,11 +45,11 @@ namespace SharedClasses
         {
             data = _jsonBody;
         }
-        public void setAccount(int _accountId)
+        public void setAccount(string _accountId)
         {
             accountId = _accountId;
         }
-        public void setLanguage(string fileName, SharedClasses.Language _languageId)
+        public void setLanguage(string fileName, string _languageId)
         {
             languageId = _languageId;
             loadDict(fileName);
@@ -60,7 +60,7 @@ namespace SharedClasses
             rootAPI = _rootAPI;
         }
 
-        public ReportBase(string _rootAPI, int _accountId) : this(_rootAPI)
+        public ReportBase(string _rootAPI, string _accountId) : this(_rootAPI)
         {
             setAccount(_accountId);
         }
@@ -68,7 +68,7 @@ namespace SharedClasses
         private void loadDict(string fileName)
         {
             string path = ConfigurationManager.AppSettings["reports-labels-folder"] + fileName + ".xml";
-            labels = SharedClasses.XMLTools.loadDict(path, "L"+((short)languageId).ToString()); 
+            labels = SharedClasses.XMLTools.loadDict(path, "L"+languageId); 
         }
     }
 }
