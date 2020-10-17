@@ -45,9 +45,9 @@
     <Compile Include="ConfigTools.cs" />
     <Compile Include="DateTools.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="JsonProtocol.cs" />
     <Compile Include="NumberToWords.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReportBase.cs" />
     <Compile Include="StringTools.cs" />
     <Compile Include="XMLTools.cs" />
   </ItemGroup>
