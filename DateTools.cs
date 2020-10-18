@@ -237,14 +237,19 @@ namespace SharedClasses
         {
             decimal quarter = date.Month / 3;
             int month = (int)(3 * Math.Floor(quarter));
-            return bom(date);
+            return new DateTime(date.Year, month, 1);
         }
-
+        public static DateTime endOfSemiYear(DateTime date)
+        {
+            int day = date.Month <= 6 ? 30 : 31;
+            int month = date.Month <= 6 ? 6 : 12;
+            return new DateTime(date.Year, month, day);
+        }
         public static DateTime endOfQuarter(DateTime date)
         {
             decimal quarter = date.Month / 3;
             int month = (int)(3 * Math.Ceiling(quarter));
-            return endOfMonth(date);
+            return endOfMonth(new DateTime(date.Year, month, 1));
         }
         public static string time(int _duration)
         {

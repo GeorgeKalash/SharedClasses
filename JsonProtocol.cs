@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace SharedClasses
 {
     public class JsonProtocol
     {
+        public class StatusCheck
+        {
+            public int statusId;
+        }
         public class QryStructure<T>
         {
             public int count;
@@ -18,5 +19,11 @@ namespace SharedClasses
             public int statusId;
             public string message;
         }
-    }
+        public class ErrorStructure
+        {
+            public int statusId;
+            public string error;
+            public int logId;
+        }
+    }       
 }
