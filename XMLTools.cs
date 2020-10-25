@@ -56,6 +56,7 @@ namespace SharedClasses
         }
 
     }
+
     public class XMLStore
     {
         const string KEY = "key";
@@ -76,6 +77,12 @@ namespace SharedClasses
             }
         }
 
+        public static KeyValue getObject(List<KeyValue> _list, int _id)
+        {
+            return _list.Where(x => x.key == _id).FirstOrDefault();
+        }
+
+
         public static string keyValue(List<KeyValue> _list, ref short _listHead, int _Id)
         {
             while (_listHead < _list.Count)
@@ -86,6 +93,8 @@ namespace SharedClasses
             }
             return null;
         }
+
+
 
         public static string keyValue(List<KeyValue> _list, int _Id)
         {
@@ -161,6 +170,7 @@ namespace SharedClasses
             return xmlToList(_filePath, groupId);
         }
     }
+
     public class XMLTools
     {
         private static XmlReader read(string _filePath)
