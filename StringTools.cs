@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace SharedClasses
@@ -8,6 +9,21 @@ namespace SharedClasses
 
     public static class StringTools
     {
+        public static byte[] encode_SHA512(string input)
+        {
+            try
+            {
+                using (SHA512 sha = SHA512.Create())
+                {
+                    byte[] hash = sha.ComputeHash(Encoding.UTF8.GetBytes(input));
+                    return hash;
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("AUTHENTICATION_COMPUTE_HASH_ERROR");
+            }
+        }
         private static string numericPart(string _reference, ref ushort _prefixEndIdx)
         {
             if (_reference == null)
