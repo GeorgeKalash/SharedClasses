@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigTools.cs" />
+    <Compile Include="SortTools.cs" />
     <Compile Include="DateTools.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="JsonProtocol.cs" />
