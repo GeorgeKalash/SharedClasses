@@ -42,7 +42,7 @@ namespace SharedClasses
                 if (delD < 0)
                 {
                     delD = monthDays + delD;
-                    M2 = M2 - 1;
+                    M2 -= 1;
                 }
 
                 delM = M2 - startDate.Month;
@@ -50,7 +50,7 @@ namespace SharedClasses
                 if (delM < 0)
                 {
                     delM = 12 + delM;
-                    Y2 = Y2 - 1;
+                    Y2 -= 1;
                 }
 
                 delY = Y2 - startDate.Year;
@@ -198,14 +198,14 @@ namespace SharedClasses
         {
             return new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
         }
-        public static DateTime nextAnniversary(DateTime birthDate, DateTime trxDate)
+        public static DateTime nextAnniversary(DateTime baseDate, DateTime trxDate)
         {
-            if (trxDate.Month == birthDate.Month && trxDate.Day == birthDate.Day)
+            if (trxDate.Month == baseDate.Month && trxDate.Day == baseDate.Day)
                 return trxDate;
-            if ((birthDate.Month < trxDate.Month) || (birthDate.Month == trxDate.Month && birthDate.Day < trxDate.Day))
-                return new DateTime(trxDate.Year + 1, birthDate.Month, birthDate.Day);
+            if ((baseDate.Month < trxDate.Month) || (baseDate.Month == trxDate.Month && baseDate.Day < trxDate.Day))
+                return new DateTime(trxDate.Year + 1, baseDate.Month, baseDate.Day);
             else
-                return new DateTime(trxDate.Year, birthDate.Month, birthDate.Day);
+                return new DateTime(trxDate.Year, baseDate.Month, baseDate.Day);
         }
         public static DateTime nextHalfMonth(DateTime date)
         {
@@ -297,6 +297,10 @@ namespace SharedClasses
         public static DateTime boy(DateTime _date)
         {
             return new DateTime(_date.Year, 1, 1);
+        }
+        public static DateTime eoy(DateTime _date)
+        {
+            return new DateTime(_date.Year, 12, 31);
         }
         public static DateTime bom(DateTime _date)
         {
