@@ -3,13 +3,18 @@ using VectorLibrary;
 
 namespace SharedClasses.RelationalData
 {
-    public struct Relation
+    public class Table
+    {
+        public string tableName;
+    }
+
+    public class Relation
     {
         public string child, parent;
     }
     public interface IRelationalData
     {
-        List<string> tables();
+        List<Table> tables();
         List<Relation> relations();
     }
 
@@ -17,20 +22,20 @@ namespace SharedClasses.RelationalData
     {
         public static bool equalStrings(object _1, object _2)
         {
-            return ((string)_1).CompareTo((string)_2) == 0;
+            return (string)_1 == (string)_2;
         }
 
         public static List<string> tablesByDependency(IRelationalData mgr, DataStructure.Compare order)
         {
             List<string> result = new List<string>();
 
-            List<string> tables = mgr.tables();
+            List<Table> tables = mgr.tables();
             List<Relation> foreignKeys = mgr.relations();
 
             List<string> nodes = new List<string>();
 
-            foreach (string table in tables)
-                nodes.Add(table);
+            foreach (Table table in tables)
+                nodes.Add(table.tableName);
 
             List<Edge<string>> edges = new List<Edge<string>>();
 
