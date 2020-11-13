@@ -61,10 +61,14 @@ namespace SharedClasses
     {
         const string KEY = "key";
         const string VALUE = "value";
+
         public class KeyValue
         {
             public int key;
             public string value;
+            public KeyValue()
+            {
+            }
             public KeyValue(int _key, string _value)
             {
                 key = _key;
