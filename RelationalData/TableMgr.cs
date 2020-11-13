@@ -25,9 +25,9 @@ namespace SharedClasses.RelationalData
             return (string)_1 == (string)_2;
         }
 
-        public static List<string> tablesByDependency(IRelationalData mgr, DataStructure.Compare order)
+        public static List<Node<string>> tablesByDependency(IRelationalData mgr, DataStructure.Compare order)
         {
-            List<string> result = new List<string>();
+            List<Node<string>> result = new List<Node<string>>();
 
             List<Table> tables = mgr.tables();
             List<Relation> foreignKeys = mgr.relations();
@@ -50,7 +50,7 @@ namespace SharedClasses.RelationalData
             string logCmd = string.Empty;
             foreach (Node<string> rec in v.nodes)
             {
-                result.Add(rec.data);
+                result.Add(rec);
             }
 
             return result;
