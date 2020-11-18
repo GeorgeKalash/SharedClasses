@@ -9,6 +9,14 @@ namespace SharedClasses
 {
     public static class ObjectDataHelper
     {
+        public static List<object> typedToObject<T>(List<T> list)
+        {
+            List<object> returnedData = new List<object>();
+            foreach (T obj in list)
+                returnedData.Add(obj);
+            return returnedData;
+        }
+
         public static ObjectFieldData recordKey(List<ObjectDataHelper.ObjectFieldData> _fieldsList, string _key)
         {
             foreach (ObjectDataHelper.ObjectFieldData field in _fieldsList)
@@ -101,7 +109,7 @@ namespace SharedClasses
 
             foreach (var property in propertyInfos)
             {
-                double? value = numericValue(property.Value, property.Type, property.FormatAttribute);
+                double? value = numericValue(property.Value, property.Type);
 
                 if (value != null)
                 {
@@ -112,7 +120,7 @@ namespace SharedClasses
 
         }
 
-        private static Double? numericValue(object value, Type type, DisplayFormatAttribute format)
+        private static Double? numericValue(object value, Type type)
         {
             if (type.IsEnum || (Nullable.GetUnderlyingType(type) != null && Nullable.GetUnderlyingType(type).IsEnum))
             {
