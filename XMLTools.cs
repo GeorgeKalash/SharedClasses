@@ -16,7 +16,7 @@ namespace SharedClasses
         /// <typeparam name="T">Object Type</typeparam>
         /// <param name="input">xml data</param>
         /// <returns>Object Type</returns>
-        public T Deserialize<T>(string input) where T : class
+        public static T Deserialize<T>(string input) where T : class
         {
             System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(T));
 
@@ -32,7 +32,7 @@ namespace SharedClasses
         /// <typeparam name="T"></typeparam>
         /// <param name="ObjectToSerialize"></param>
         /// <returns></returns>
-        public string Serialize<T>(T ObjectToSerialize)
+        public static string Serialize<T>(T ObjectToSerialize)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(ObjectToSerialize.GetType());
 
@@ -43,7 +43,7 @@ namespace SharedClasses
             }
         }
 
-        public T DeserializeFromFile<T>(string path) where T : class
+        public static T DeserializeFromFile<T>(string path) where T : class
         {
             string xmlInputData = File.ReadAllText(path);
             return Deserialize<T>(xmlInputData);
