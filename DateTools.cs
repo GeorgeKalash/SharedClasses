@@ -207,6 +207,12 @@ namespace SharedClasses
             else
                 return new DateTime(trxDate.Year, baseDate.Month, baseDate.Day);
         }
+
+        public static short dow(string _dayId)
+        {
+            DateTime d = date(_dayId);
+            return d.DayOfWeek == DayOfWeek.Sunday ? (short)7 : (short) d.DayOfWeek;
+        }
         public static DateTime nextHalfMonth(DateTime date)
         {
             if (date.Day == 1)
@@ -310,30 +316,14 @@ namespace SharedClasses
         {
             return dateTime(_dayId, "23:59");
         }
-        public static DateTime? dateTime(string _dayId, string _time)
+        public static DateTime dateTime(string _dayId, string _time)
         {
-            try
-            {
                 string dt = string.Format("{0} {1}", _dayId, _time);
                 return DateTime.ParseExact(dt, "yyyyMMdd HH:mm", CultureInfo.InvariantCulture);
-            }
-            catch
-            {
-                return null;
-            }
         }
-        public static DateTime? date(string _dayId)
+        public static DateTime date(string _dayId)
         {
-            if (_dayId == null)
-                return null;
-            try
-            {
-                return DateTime.ParseExact(_dayId, "yyyyMMdd", CultureInfo.InvariantCulture);
-            }
-            catch
-            {
-                return null;
-            }
+            return DateTime.ParseExact(_dayId, "yyyyMMdd", CultureInfo.InvariantCulture);
         }
     }
 }

@@ -4,12 +4,12 @@ using System;
 
 namespace SharedClasses
 {
-    public class getSMTP
+    public class SMTP
     {
         SmtpClient client = new SmtpClient();
         bool isBodyHtml = false;
 
-        public getSMTP(string _user, string _pw, string _host, int _port, bool _isBodyHtml = false)
+        public SMTP(string _user, string _pw, string _host, int _port, bool _isBodyHtml = false)
         {
             isBodyHtml = _isBodyHtml;
             client.Port = _port;
