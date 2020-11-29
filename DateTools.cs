@@ -325,5 +325,11 @@ namespace SharedClasses
         {
             return DateTime.ParseExact(_dayId, "yyyyMMdd", CultureInfo.InvariantCulture);
         }
+        public static string addDays(string _dayId, short _days)
+        {
+            DateTime dt = DateTime.ParseExact(_dayId, "yyyyMMdd", CultureInfo.InvariantCulture);
+            dt = dt.AddDays(_days);
+            return dt.ToString("yyyyMMdd", CultureInfo.InvariantCulture);
+        }
     }
 }
