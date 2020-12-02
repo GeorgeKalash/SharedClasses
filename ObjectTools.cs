@@ -138,8 +138,11 @@ namespace SharedClasses
 
         private static string FormatValue(object value, Type type, DisplayFormatAttribute format)
         {
-            if (value == null)
+            if (value == null)            
                 return null;
+
+            if (value is Enum)
+                return value.ToString();
 
             if (type.IsEnum || (Nullable.GetUnderlyingType(type) != null && Nullable.GetUnderlyingType(type).IsEnum))
             {
