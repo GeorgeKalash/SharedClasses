@@ -331,5 +331,25 @@ namespace SharedClasses
             dt = dt.AddDays(_days);
             return dt.ToString("yyyyMMdd", CultureInfo.InvariantCulture);
         }
+        public static string addMinutes(string _time, short _minutes, bool _reset = true)
+        {
+            short hours = Convert.ToInt16(_time.Substring(0, 2));
+            short minutes = Convert.ToInt16(_time.Substring(3, 2));
+
+            minutes += _minutes;
+
+            if (minutes >= 60)
+            {
+                hours += (short)(minutes / 60);
+                minutes = (short)(minutes % 60);
+                if (_reset)
+                    hours = (short)(hours % 24);
+            }
+
+            string leadingZeroHours = hours < 10 ? "0" : string.Empty;
+            string leadingZeroMinutes = minutes < 10 ? "0" : string.Empty;
+
+            return string.Format("{0}{1}:{2}{3}", leadingZeroHours, hours, leadingZeroMinutes, minutes);
+        }
     }
 }
