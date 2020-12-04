@@ -145,18 +145,14 @@ namespace SharedClasses
 
         public static short? hour(string _time)
         {
-            short hour;
-            if (Int16.TryParse(_time.Substring(0, 2), out hour) == false)
+            if (short.TryParse(_time.Substring(0, 2), out short hour) == false)
                 return null;
-                // throw new Octopus.OctopusException((int)Globals.ErrorId.INVALID_TIME_RANGE, _message: _time);
             return hour;
         }
         public static short? minutes(string _time)
         {
-            short minutes;
-            if (Int16.TryParse(_time.Substring(3, 2), out minutes) == false)
+            if (short.TryParse(_time.Substring(3, 2), out short minutes) == false)
                 return null;
-                // throw new Octopus.OctopusException((int)Globals.ErrorId.INVALID_TIME_RANGE, _message: _time);
             return minutes;
         }
         public static short? timeLapse(string _time1, string _time2, bool _signed)
@@ -350,6 +346,11 @@ namespace SharedClasses
             string leadingZeroMinutes = minutes < 10 ? "0" : string.Empty;
 
             return string.Format("{0}{1}:{2}{3}", leadingZeroHours, hours, leadingZeroMinutes, minutes);
+        }
+
+        public static double totalYears(DateTime _d1, DateTime _d2)
+        {
+            return (_d2 - _d1).TotalDays / 365.2425;
         }
     }
 }
