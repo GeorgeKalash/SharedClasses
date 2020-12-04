@@ -287,14 +287,14 @@ namespace SharedClasses
         {
             return dateTime(dayId(_date), "00:00");
         }
-        public static DateTime? endOfDay(DateTime _date)
+        public static DateTime? endOfDay(DateTime? _date)
         {
-            return dateTime(dayId(_date), "23:59");
+            return _date == null ? (DateTime ?) null : dateTime(dayId(_date), "23:59");
         }
         public static DateTime? endOfDate(string _key)
         {
             DateTime? dt = date(_key);
-            return dt != null ? endOfDay((DateTime)dt) : (DateTime?)null;
+            return dt != null ? endOfDay(dt) : (DateTime?)null;
         }
         public static string toString(DateTime _date)
         {
