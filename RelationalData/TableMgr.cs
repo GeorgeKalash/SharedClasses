@@ -47,7 +47,6 @@ namespace SharedClasses.RelationalData
             if (v.nodes.Count == 0)
                 return result;
 
-            string logCmd = string.Empty;
             foreach (Node<string> rec in v.nodes)
             {
                 result.Add(rec);

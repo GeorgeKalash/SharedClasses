@@ -60,7 +60,7 @@ namespace TreeStructure
                         hasNullDepthNodes = true;
                     else
                         if (_list[idx].depth == currentDepthBuild)
-                        assignChildrenDepthLevel(_list, (T)_list[idx].childId, (short)(currentDepthBuild + 1), _equals);
+                            assignChildrenDepthLevel(_list, (T)_list[idx].childId, (short)(currentDepthBuild + 1), _equals);
                 }
                 ++currentDepthBuild;
             }
@@ -94,8 +94,8 @@ namespace TreeStructure
 
         public static TreeNode<T> getTreeRoot<T>(List<Edge<T>> _edges, DataStructure.equals _equals)
         {
-            TreeManager.updateDepths<T>(_edges, _equals);
-            return TreeManager.buildTree<T>(_edges, _equals);
+            updateDepths(_edges, _equals);
+            return buildTree(_edges, _equals);
         }
     }
 
