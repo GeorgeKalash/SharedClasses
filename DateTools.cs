@@ -12,8 +12,8 @@ namespace SharedClasses
 
         public class DateRange
         {
-            DateTime startDate;
-            DateTime endDate;
+            public DateTime startDate;
+            public DateTime endDate;
             public short yearDays, monthDays;
             public int delY, delM, delD;
 
