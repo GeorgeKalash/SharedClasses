@@ -91,13 +91,11 @@ namespace SharedClasses
             object underlyingValue = Convert.ChangeType(_p.GetValue(_o), Enum.GetUnderlyingType(_p.GetValue(_o).GetType()));
             return (int)underlyingValue;
         }
-
         public class ObjectFieldData
         {
             public string fieldName, value;
             public Type type;
         }
-
         public static List<string> fieldNames(List<ObjectFieldData> _fieldsList)
         {
             List<string> collection = new List<string>();
