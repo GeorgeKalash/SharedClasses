@@ -53,6 +53,7 @@
     <Compile Include="DataStructure\TreeManager.cs" />
     <Compile Include="DataStructure\TreeNode.cs" />
     <Compile Include="DataStructure\Vector.cs" />
+    <Compile Include="HttpClient.cs" />
     <Compile Include="RelationalData\TableMgr.cs" />
     <Compile Include="smtp.cs" />
     <Compile Include="SortTools.cs" />
