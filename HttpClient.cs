@@ -45,15 +45,26 @@ public class HttpClient
         var data = Encoding.ASCII.GetBytes(_postData);
         request.ContentLength = data.Length;
 
-            using (var streamWriter = new StreamWriter(request.GetRequestStream()))
-            {
-                streamWriter.Write(_postData);
-                streamWriter.Flush();
-                streamWriter.Close();
-            }
-
+        using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+        {
+            streamWriter.Write(_postData);
+            streamWriter.Flush();
+            streamWriter.Close();
+        }
+        try
+        {
             HttpWebResponse resp = await request.GetResponseAsync() as HttpWebResponse;
             return await responseStream(resp);
+        }
+        catch (WebException ex)
+        {
+            return await responseStream((HttpWebResponse)ex.Response);
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
+        }
+
 
     }
     public async Task<string> get(string _url, Dictionary<string, string> _headers)
