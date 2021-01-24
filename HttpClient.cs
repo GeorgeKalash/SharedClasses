@@ -11,6 +11,12 @@ public class HttpClient
     {
     }
 
+    public class WebResponse
+    {
+        public HttpStatusCode HttpStatusCode;
+        public string body;
+    }
+
     private void setHeaders(HttpWebRequest _request, Dictionary<string, string> _dict)
     {
         foreach (KeyValuePair<string, string> keyValuePair in _dict)
@@ -36,7 +42,7 @@ public class HttpClient
 
         return data ?? string.Empty;
     }
-    public async Task<string> post(string _url, Dictionary<string, string> _headers, string _postData)
+    public async Task<WebResponse> post(string _url, Dictionary<string, string> _headers, string _postData)
     {
         var request = (HttpWebRequest)WebRequest.Create(_url);
         setHeaders(request, _headers);
@@ -54,18 +60,12 @@ public class HttpClient
         try
         {
             HttpWebResponse resp = await request.GetResponseAsync() as HttpWebResponse;
-            return await responseStream(resp);
+            return new WebResponse() { HttpStatusCode = resp.StatusCode, body = await responseStream(resp) };
         }
         catch (WebException ex)
         {
-            return await responseStream((HttpWebResponse)ex.Response);
+            return new WebResponse() { HttpStatusCode = ((HttpWebResponse)ex.Response).StatusCode, body = await responseStream((HttpWebResponse) ex.Response) };
         }
-        catch (Exception ex)
-        {
-            return ex.Message;
-        }
-
-
     }
     public async Task<string> get(string _url, Dictionary<string, string> _headers)
     {
