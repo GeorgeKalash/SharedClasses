@@ -36,14 +36,6 @@
     <NoWarn>IDE1006</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SharedClasses, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Extensions\SharedClasses.dll</HintPath>
-    </Reference>
-    <Reference Include="StoreManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Extensions\StoreManager.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -64,7 +56,6 @@
     <Compile Include="HttpClient.cs" />
     <Compile Include="RelationalData\TableMgr.cs" />
     <Compile Include="smtp.cs" />
-    <Compile Include="SortTools.cs" />
     <Compile Include="DateTools.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="JsonProtocol.cs" />

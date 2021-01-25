@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using VectorLibrary;
 
-namespace SharedClasses.RelationalData
+namespace SharedClasses
 {
-    public class Table
+    public class Store
     {
         public string tableName;
     }
@@ -14,7 +14,7 @@ namespace SharedClasses.RelationalData
     }
     public interface IRelationalData
     {
-        List<Table> tables();
+        List<Store> tables();
         List<Relation> relations();
     }
 
@@ -29,12 +29,12 @@ namespace SharedClasses.RelationalData
         {
             List<Node<string>> result = new List<Node<string>>();
 
-            List<Table> tables = mgr.tables();
+            List<Store> tables = mgr.tables();
             List<Relation> foreignKeys = mgr.relations();
 
             List<string> nodes = new List<string>();
 
-            foreach (Table table in tables)
+            foreach (Store table in tables)
                 nodes.Add(table.tableName);
 
             List<Edge<string>> edges = new List<Edge<string>>();
