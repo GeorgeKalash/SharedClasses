@@ -67,25 +67,19 @@ public class HttpClient
             return new WebResponse() { HttpStatusCode = ((HttpWebResponse)ex.Response).StatusCode, body = await responseStream((HttpWebResponse) ex.Response) };
         }
     }
-    public async Task<string> get(string _url, Dictionary<string, string> _headers)
+    public async Task<WebResponse> get(string _url, Dictionary<string, string> _headers)
     {
             var request = (HttpWebRequest)WebRequest.Create(_url);
             setHeaders(request, _headers);
             request.Method = "GET";
             try
             {
-                var response = (HttpWebResponse)await request.GetResponseAsync();
-                if (response == null || (response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.SeeOther))
-                    return string.Empty;
-                return await responseStream(response);
+                HttpWebResponse resp = await request.GetResponseAsync() as HttpWebResponse;
+                return new WebResponse() { HttpStatusCode = resp.StatusCode, body = await responseStream(resp) };
             }
             catch (WebException ex)
             {
-                return await responseStream((HttpWebResponse)ex.Response);
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
+                return new WebResponse() { HttpStatusCode = ((HttpWebResponse)ex.Response).StatusCode, body = await responseStream((HttpWebResponse)ex.Response) };
             }
     }
 }
