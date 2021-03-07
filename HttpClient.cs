@@ -64,6 +64,9 @@ public class HttpClient
         }
         catch (WebException ex)
         {
+            if (ex.Response == null)
+                return new WebResponse() { HttpStatusCode = HttpStatusCode.BadGateway, body = ex.Message };
+
             return new WebResponse() { HttpStatusCode = ((HttpWebResponse)ex.Response).StatusCode, body = await responseStream((HttpWebResponse) ex.Response) };
         }
     }
@@ -79,6 +82,9 @@ public class HttpClient
             }
             catch (WebException ex)
             {
+                if (ex.Response == null)
+                    return new WebResponse() { HttpStatusCode =  HttpStatusCode.BadGateway, body = ex.Message };
+
                 return new WebResponse() { HttpStatusCode = ((HttpWebResponse)ex.Response).StatusCode, body = await responseStream((HttpWebResponse)ex.Response) };
             }
     }
