@@ -9,12 +9,12 @@ namespace SharedClasses
         SmtpClient client = new SmtpClient();
         bool isBodyHtml = false;
 
-        public SMTP(string _user, string _pw, string _host, int _port, bool _isBodyHtml = false)
+        public SMTP(string _user, string _pw, string _host, int _port, bool _isBodyHtml = false, bool _enableSsl = true)
         {
             isBodyHtml = _isBodyHtml;
             client.Port = _port;
             client.Host = _host;
-            client.EnableSsl = true;
+            client.EnableSsl = _enableSsl;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.UseDefaultCredentials = false;
             client.Credentials = new System.Net.NetworkCredential(_user, _pw);
@@ -56,9 +56,10 @@ namespace SharedClasses
             {
                 client.Send(message);
             }
-            catch (SmtpException ex)
+            catch (Exception ex)
             {
-                throw new Exception("SMTP ERROR: " + _toAddresses + " " + ex.Message);
+                string errorMsg = ex.ToString();
+                throw new Exception(errorMsg) ;
             }
             // Clean up
             message.Dispose();
