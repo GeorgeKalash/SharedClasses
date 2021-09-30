@@ -14,7 +14,7 @@ namespace SharedClasses
             isBodyHtml = _isBodyHtml;
             client.Port = _port;
             client.Host = _host;
-            client.EnableSsl = false;
+            client.EnableSsl = true;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.UseDefaultCredentials = false;
             client.Credentials = new System.Net.NetworkCredential(_user, _pw);
@@ -44,7 +44,6 @@ namespace SharedClasses
             {
                 message.Bcc.Add(_bccAddresses);
             }
-
 
             message.IsBodyHtml = isBodyHtml;
             message.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;

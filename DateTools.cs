@@ -197,7 +197,7 @@ namespace SharedClasses
         public static DateTime nextAnniversary(DateTime baseDate, DateTime trxDate)
         {
             if (trxDate.Month == baseDate.Month && trxDate.Day == baseDate.Day)
-                return trxDate;
+                return trxDate.AddYears(1);
             if ((baseDate.Month < trxDate.Month) || (baseDate.Month == trxDate.Month && baseDate.Day < trxDate.Day))
                 return new DateTime(trxDate.Year + 1, baseDate.Month, baseDate.Day);
             else
@@ -249,7 +249,7 @@ namespace SharedClasses
         }
         public static DateTime endOfQuarter(DateTime date)
         {
-            decimal quarter = date.Month / 3;
+            double quarter = ((double) date.Month) / 3;
             int month = (int)(3 * Math.Ceiling(quarter));
             return endOfMonth(new DateTime(date.Year, month, 1));
         }
