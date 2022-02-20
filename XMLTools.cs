@@ -7,56 +7,7 @@ using System.Xml;
 using System.Xml.Serialization;
 
 namespace SharedClasses
-{
-    public class XMLSerializer
-    {
-        /// <summary>
-        /// populate a class with xml data 
-        /// </summary>
-        /// <typeparam name="T">Object Type</typeparam>
-        /// <param name="input">xml data</param>
-        /// <returns>Object Type</returns>
-        public static T Deserialize<T>(string input) where T : class
-        {
-            System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(T));
-
-            using (StringReader sr = new StringReader(input))
-            {
-                return (T)ser.Deserialize(sr);
-            }
-        }
-
-        /// <summary>
-        /// convert object to xml string
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="ObjectToSerialize"></param>
-        /// <returns></returns>
-        public static string Serialize<T>(T ObjectToSerialize)
-        {
-            XmlSerializer xmlSerializer = new XmlSerializer(ObjectToSerialize.GetType());
-
-            using (StringWriter textWriter = new StringWriter())
-            {
-                xmlSerializer.Serialize(textWriter, ObjectToSerialize);
-                return textWriter.ToString();
-            }
-        }
-
-        public static T DeserializeFromFile<T>(string path) where T : class
-        {
-            string xmlInputData = File.ReadAllText(path);
-            return Deserialize<T>(xmlInputData);
-        }
-
-        public void SerializeToFile<T>(T ObjectToSerialize, string path) where T : class
-        {
-            string xmlText = Serialize<T>(ObjectToSerialize);
-            File.WriteAllText(path, xmlText);
-        }
-
-    }
-
+{ 
     public class XMLStore
     {
         const string KEY = "key";
@@ -97,8 +48,6 @@ namespace SharedClasses
             }
             return null;
         }
-
-
 
         public static string keyValue(List<KeyValue> _list, int _Id)
         {
@@ -174,7 +123,6 @@ namespace SharedClasses
             return xmlToList(_filePath, groupId);
         }
     }
-
     public class XMLTools
     {
         private static XmlReader read(string _filePath)
