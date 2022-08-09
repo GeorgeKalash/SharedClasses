@@ -7,7 +7,7 @@ namespace SharedClasses
         const short ENGLISH = 1;
         public class CurrencyInfo
         {
-            public enum Currencies { UAE = 0, Syria, SaudiArabia, Tunisia, Gold, Lebanon, USDollar, CFA, Euro };
+            public enum Currencies { UAE = 0, Syria, SaudiArabia, Tunisia, Gold, Lebanon, USDollar, CFA, Euro, Nigeria };
 
             #region Constructors
 
@@ -192,6 +192,26 @@ namespace SharedClasses
                         Arabic2CurrencyPartName = "سنتين";
                         Arabic310CurrencyPartName = "سنتات";
                         Arabic1199CurrencyPartName = "سنت";
+                        PartPrecision = 2;
+                        IsCurrencyPartNameFeminine = false;
+                        break;
+
+                    case Currencies.Nigeria:
+                        CurrencyID = 9;
+                        CurrencyCode = "Naira";
+                        IsCurrencyNameFeminine = true;
+                        EnglishCurrencyName = "Naira";
+                        EnglishPluralCurrencyName = "Nairas";
+                        EnglishCurrencyPartName = "kobo";
+                        EnglishPluralCurrencyPartName = "kobos";
+                        Arabic1CurrencyName = "نيرا";
+                        Arabic2CurrencyName = "إثنين نيرا";
+                        Arabic310CurrencyName = "نيرا";
+                        Arabic1199CurrencyName = "نيرا";
+                        Arabic1CurrencyPartName = "كوبو";
+                        Arabic2CurrencyPartName = "كوبو";
+                        Arabic310CurrencyPartName = "كوبو";
+                        Arabic1199CurrencyPartName = "كوبو";
                         PartPrecision = 2;
                         IsCurrencyPartNameFeminine = false;
                         break;

@@ -9,6 +9,11 @@ namespace SharedClasses
 
     public static class StringTools
     {
+        public static bool contains(this string source, string toCheck, StringComparison comp)
+        {
+            return source?.IndexOf(toCheck, comp) >= 0;
+        }
+
         public static byte[] encode_SHA512(string input)
         {
             try
