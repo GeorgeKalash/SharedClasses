@@ -6,7 +6,6 @@ using System.Text;
 
 namespace SharedClasses
 {
-
     public static class StringTools
     {
         public static bool contains(this string source, string toCheck, StringComparison comp)
