@@ -38,21 +38,22 @@ namespace SharedClasses
                 --_prefixEndIdx;
             if (_prefixEndIdx == _reference.Length)
                 return null;
-            return _reference.Substring(_prefixEndIdx + 1, _reference.Length - _prefixEndIdx - 1);
+            return _prefixEndIdx == 0 ? _reference : _reference.Substring(_prefixEndIdx + 1, _reference.Length - _prefixEndIdx - 1);
         }
 
         public static string nextReference(string _reference)
         {
             ushort prefixEndIdx = 0;
             string newReference = numericPart(_reference, ref prefixEndIdx);
-            string _prefix = _reference.Substring(0, prefixEndIdx + 1);
+
+            string _prefix = prefixEndIdx == 0 ? string.Empty : _reference.Substring(0, prefixEndIdx + 1);
 
             if (newReference == null)
                 return null;
-            int result;
+            long result;
             string nextRef;
 
-            if (int.TryParse(newReference, out result))
+            if (Int64.TryParse(newReference, out result))
             {
                 nextRef = (result + 1).ToString();
                 int deltaLength = newReference.Length - nextRef.Length;
