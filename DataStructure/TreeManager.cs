@@ -12,6 +12,11 @@ namespace TreeStructure
 
     public class TreeManager
     {
+        public static bool equalsInts(object _object1, object _object2)
+        {
+            return (int?)_object1 == (int?)_object2;
+        }
+
         public static DataStructure.Compare compareDepths<T>(object _edge1, object _edge2)
         {
             if (((Edge<T>)_edge1).depth < ((Edge<T>)_edge2).depth)
