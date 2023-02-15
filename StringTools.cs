@@ -34,11 +34,11 @@ namespace SharedClasses
                 return null;
             string digits = "0123456789";
             _prefixEndIdx = (ushort)(_reference.Length - 1);
-            while (_prefixEndIdx > 0 && digits.Contains(_reference.Substring(_prefixEndIdx, 1)) == true)
+            while (_prefixEndIdx >= 0 && digits.Contains(_reference.Substring(_prefixEndIdx, 1)) == true)
                 --_prefixEndIdx;
             if (_prefixEndIdx == _reference.Length)
                 return null;
-            return _prefixEndIdx == 0 ? _reference : _reference.Substring(_prefixEndIdx + 1, _reference.Length - _prefixEndIdx - 1);
+            return _prefixEndIdx < 0 ? _reference : _reference.Substring(_prefixEndIdx + 1, _reference.Length - _prefixEndIdx - 1);
         }
 
         public static string nextReference(string _reference)
