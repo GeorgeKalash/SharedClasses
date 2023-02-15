@@ -28,12 +28,12 @@ namespace SharedClasses
                 throw new Exception("AUTHENTICATION_COMPUTE_HASH_ERROR");
             }
         }
-        private static string numericPart(string _reference, ref ushort _prefixEndIdx)
+        private static string numericPart(string _reference, ref short _prefixEndIdx)
         {
             if (_reference == null)
                 return null;
             string digits = "0123456789";
-            _prefixEndIdx = (ushort)(_reference.Length - 1);
+            _prefixEndIdx = (short)(_reference.Length - 1);
             while (_prefixEndIdx >= 0 && digits.Contains(_reference.Substring(_prefixEndIdx, 1)) == true)
                 --_prefixEndIdx;
             if (_prefixEndIdx == _reference.Length)
@@ -43,7 +43,7 @@ namespace SharedClasses
 
         public static string nextReference(string _reference)
         {
-            ushort prefixEndIdx = 0;
+            short prefixEndIdx = 0;
             string newReference = numericPart(_reference, ref prefixEndIdx);
 
             string _prefix = prefixEndIdx == 0 ? string.Empty : _reference.Substring(0, prefixEndIdx + 1);
