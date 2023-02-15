@@ -48,10 +48,14 @@ public class HttpClient
         setHeaders(request, _headers);
         request.Method = "POST";
 
-        var data = Encoding.ASCII.GetBytes(_postData);
-        request.ContentLength = data.Length;
+        ASCIIEncoding encoding = new ASCIIEncoding();
 
-        using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+        var data = encoding.GetBytes(_postData);
+        //request.ContentLength = data.Length;
+        
+        Stream stream = request.GetRequestStream();
+
+        using (var streamWriter = new StreamWriter(stream))
         {
             streamWriter.Write(_postData);
             streamWriter.Flush();
@@ -65,7 +69,7 @@ public class HttpClient
         catch (WebException ex)
         {
             if (ex.Response == null)
-                return new WebResponse() { HttpStatusCode = HttpStatusCode.BadGateway, body = ex.Message };
+                return new WebResponse() { HttpStatusCode = HttpStatusCode.BadRequest, body = ex.Message };
 
             return new WebResponse() { HttpStatusCode = ((HttpWebResponse)ex.Response).StatusCode, body = await responseStream((HttpWebResponse) ex.Response) };
         }
