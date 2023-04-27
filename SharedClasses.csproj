@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="ConfigTools.cs" />
     <Compile Include="DataStructure\Graph.cs" />
+    <Compile Include="DataStructure\MergeSort.cs" />
     <Compile Include="DataStructure\Sort.cs" />
     <Compile Include="DataStructure\TreeManager.cs" />
     <Compile Include="DataStructure\TreeNode.cs" />

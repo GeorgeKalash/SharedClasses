@@ -25,35 +25,35 @@ namespace SharedClasses
             return (string)_1 == (string)_2;
         }
 
-        public static List<Node<string>> tablesByDependency(IRelationalData mgr, DataStructure.Compare order)
-        {
-            List<Node<string>> result = new List<Node<string>>();
+        //public static List<Node<string>> tablesByDependency(IRelationalData mgr, DataStructure.Compare order)
+        //{
+        //    List<Node<string>> result = new List<Node<string>>();
 
-            List<Store> tables = mgr.tables();
-            List<Relation> foreignKeys = mgr.relations();
+        //    List<Store> tables = mgr.tables();
+        //    List<Relation> foreignKeys = mgr.relations();
 
-            List<string> nodes = new List<string>();
+        //    List<string> nodes = new List<string>();
 
-            foreach (Store table in tables)
-                nodes.Add(table.tableName);
+        //    foreach (Store table in tables)
+        //        nodes.Add(table.tableName);
 
-            List<Edge<string>> edges = new List<Edge<string>>();
+        //    List<Edge<string>> edges = new List<Edge<string>>();
 
-            foreach (Relation rec in foreignKeys)
-                edges.Add(new Edge<string>(rec.parent, rec.child));
+        //    foreach (Relation rec in foreignKeys)
+        //        edges.Add(new Edge<string>(rec.parent, rec.child));
 
-            Vector<string> v = new Vector<string>(nodes, edges, equalStrings, order);
+        //    Vector<string> v = new Vector<string>(nodes, edges, equalStrings, order);
 
-            if (v.nodes.Count == 0)
-                return result;
+        //    if (v.nodes.Count == 0)
+        //        return result;
 
-            foreach (Node<string> rec in v.nodes)
-            {
-                result.Add(rec);
-            }
+        //    foreach (Node<string> rec in v.nodes)
+        //    {
+        //        result.Add(rec);
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
     }
 }
 
