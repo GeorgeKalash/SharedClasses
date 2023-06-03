@@ -5,6 +5,8 @@ namespace SharedClasses
     public class NumberToWords
     {
         const short ENGLISH = 1;
+        const short ARABIC = 2;
+        const short FRENCH = 3;
         public class CurrencyInfo
         {
             public enum Currencies { UAE = 0, Syria, SaudiArabia, Tunisia, Gold, Lebanon, USDollar, CFA, Euro, Nigeria, Egypt, Thailand };
@@ -389,14 +391,18 @@ namespace SharedClasses
 
             NumberToWords converter = new NumberToWords(_amount, new NumberToWords.CurrencyInfo((CurrencyInfo.Currencies)_currencyProfileId));
 
-            if (_languageId == ENGLISH)
+            switch (_languageId)
             {
-                return converter.ConvertToEnglish();
+                case ENGLISH:
+                    return converter.ConvertToEnglish();
+                case ARABIC:
+                    return converter.ConvertToArabic();
+                case FRENCH:
+                    return NumberToFrenchTextConverter.ConvertToFrenchText((double) _amount);
             }
-            else
-            {
-                return converter.ConvertToArabic();
-            }
+
+            return null;
+
         }
 
         #region Varaibles & Properties
