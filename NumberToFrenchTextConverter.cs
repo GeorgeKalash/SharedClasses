@@ -85,7 +85,7 @@ public class NumberToFrenchTextConverter
 
         if (decimalPart > 0)
         {
-            frenchText += " virgule " + ConvertToFrenchText(decimalPart);
+            frenchText += " et " + ConvertToFrenchText(decimalPart) + " centimes";
         }
 
         return frenchText;
