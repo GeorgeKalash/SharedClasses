@@ -17,6 +17,27 @@ namespace SharedClasses
         /// <typeparam name="T">Object Type to Clone</typeparam>
         /// <param name="obj">Object to Clone</param>
         /// <returns>New Object reference</returns>
+        /// 
+        public static void copyProperties(object source, object destination)
+        {
+            Type sourceType = source.GetType();
+            Type destinationType = destination.GetType();
+
+            PropertyInfo[] sourceProperties = sourceType.GetProperties();
+            PropertyInfo[] destinationProperties = destinationType.GetProperties();
+
+            foreach (PropertyInfo sourceProperty in sourceProperties)
+            {
+                PropertyInfo destinationProperty = Array.Find(destinationProperties,
+                    prop => prop.Name == sourceProperty.Name && prop.PropertyType == sourceProperty.PropertyType);
+
+                if (destinationProperty != null && destinationProperty.CanWrite)
+                {
+                    object value = sourceProperty.GetValue(source);
+                    destinationProperty.SetValue(destination, value);
+                }
+            }
+        }
         public static T CloneObject<T>(this T obj) where T : class
         {
             if (obj == null) return null;
