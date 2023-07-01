@@ -56,6 +56,7 @@
     <Compile Include="DataStructure\TreeNode.cs" />
     <Compile Include="DataStructure\Vector.cs" />
     <Compile Include="HttpClient.cs" />
+    <Compile Include="KeyGenerator.cs" />
     <Compile Include="NumberToFrenchTextConverter.cs" />
     <Compile Include="RawPrinterHelper.cs" />
     <Compile Include="RelationalData\TableMgr.cs" />
