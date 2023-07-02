@@ -8,43 +8,18 @@ namespace SharedClasses
     }
     public static class CurrencyUnitName
     {
-        public static CurrencyUnit units(SharedClasses.NumberToWords.CurrencyInfo.Currencies _currency, Language _languageId)
+        public static CurrencyUnit frenchUnits(SharedClasses.NumberToWords.CurrencyInfo.Currencies _currency)
         {
             switch (_currency)
             {
                 case NumberToWords.CurrencyInfo.Currencies.CFA:
-                {
-                    switch (_languageId)
-                    {
-                        case Language.FRENCH:
-                            return new SharedClasses.CurrencyUnit() { unitName = "CFA", unitSubname = "francs" };
-                        case Language.ENGLISH:
-                            return new SharedClasses.CurrencyUnit() { unitName = "CFA", unitSubname = "cents" };
-                    }
-                        break;
-                }
+                    return new SharedClasses.CurrencyUnit() { unitName = "CFA", unitSubname = "francs" };
                 case NumberToWords.CurrencyInfo.Currencies.USDollar:
-                    {
-                        switch (_languageId)
-                        {
-                            case Language.FRENCH:
-                                return new SharedClasses.CurrencyUnit() { unitName = "Dollar", unitSubname = "centimes" };
-                            case Language.ENGLISH:
-                                return new SharedClasses.CurrencyUnit() { unitName = "Dollar", unitSubname = "cents" };
-                        }
-                    }
-                        break;
+                    return new SharedClasses.CurrencyUnit() { unitName = "Dollar", unitSubname = "centimes" };
                 case NumberToWords.CurrencyInfo.Currencies.Euro:
-                    {
-                        switch (_languageId)
-                        {
-                            case Language.FRENCH:
-                                return new SharedClasses.CurrencyUnit() { unitName = "Euro", unitSubname = "centimes" };
-                            case Language.ENGLISH:
-                                return new SharedClasses.CurrencyUnit() { unitName = "Euro", unitSubname = "cents" };
-                        }
-                    }
-                    break;
+                    return new SharedClasses.CurrencyUnit() { unitName = "Euro", unitSubname = "centimes" };
+                case NumberToWords.CurrencyInfo.Currencies.Lebanon:
+                    return new SharedClasses.CurrencyUnit() { unitName = "Lira", unitSubname = "piastres" };
             }
 
             return null;
@@ -447,7 +422,7 @@ namespace SharedClasses
                     converter = new NumberToWords(_amount, new NumberToWords.CurrencyInfo((CurrencyInfo.Currencies)_currencyProfileId));
                     return converter.ConvertToArabic();
                 case FRENCH:
-                    CurrencyUnit currencyUnit = CurrencyUnitName.units((CurrencyInfo.Currencies)_currencyProfileId, (Language) _languageId);
+                    CurrencyUnit currencyUnit = CurrencyUnitName.frenchUnits((CurrencyInfo.Currencies)_currencyProfileId);
                     return NumberToFrenchTextConverter.currencyText((double) _amount, currencyUnit?.unitName, currencyUnit?.unitSubname  );
             }
 
