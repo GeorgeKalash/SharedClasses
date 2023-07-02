@@ -5,7 +5,7 @@ public class NumberToFrenchTextConverter
     private static string[] units = { "", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix", "onze", "douze", "treize", "quatorze", "quinze", "seize", "dix-sept", "dix-huit", "dix-neuf" };
     private static string[] tens = { "", "dix", "vingt", "trente", "quarante", "cinquante", "soixante", "soixante", "quatre-vingt", "quatre-vingt" };
 
-    public static string ConvertToFrenchText(int number)
+    public static string convertToFrenchText(int number)
     {
         if (number == 0)
         {
@@ -13,7 +13,7 @@ public class NumberToFrenchTextConverter
         }
         else if (number < 0)
         {
-            return "moins " + ConvertToFrenchText(Math.Abs(number));
+            return "moins " + convertToFrenchText(Math.Abs(number));
         }
         else if (number < 20)
         {
@@ -37,7 +37,7 @@ public class NumberToFrenchTextConverter
                     text += "-";
                 }
 
-                text += ConvertToFrenchText(unitsDigit);
+                text += convertToFrenchText(unitsDigit);
             }
 
             return text;
@@ -51,7 +51,7 @@ public class NumberToFrenchTextConverter
 
             if (remainingNumber > 0)
             {
-                text += " " + ConvertToFrenchText(remainingNumber);
+                text += " " + convertToFrenchText(remainingNumber);
             }
 
             return text;
@@ -61,11 +61,11 @@ public class NumberToFrenchTextConverter
             int thousandsDigit = number / 1000;
             int remainingNumber = number % 1000;
 
-            string text = ConvertToFrenchText(thousandsDigit) + " mille";
+            string text = convertToFrenchText(thousandsDigit) + " mille";
 
             if (remainingNumber > 0)
             {
-                text += " " + ConvertToFrenchText(remainingNumber);
+                text += " " + convertToFrenchText(remainingNumber);
             }
 
             return text;
@@ -76,16 +76,31 @@ public class NumberToFrenchTextConverter
         }
     }
 
-    public static string ConvertToFrenchText(double number)
+    public static string convertToFrenchText(double number)
     {
         int wholePart = (int)number;
         int decimalPart = (int)Math.Round((number - wholePart) * 100);
 
-        string frenchText = ConvertToFrenchText(wholePart);
+        string frenchText = convertToFrenchText(wholePart);
 
         if (decimalPart > 0)
         {
-            frenchText += " et " + ConvertToFrenchText(decimalPart) + " centimes";
+            frenchText += " et " + convertToFrenchText(decimalPart) + " centimes";
+        }
+
+        return frenchText;
+    }
+
+    public static string currencyText(double number, string _currency, string _decimals)
+    {
+        int wholePart = (int)number;
+        int decimalPart = (int)Math.Round((number - wholePart) * 100);
+
+        string frenchText = string.Format("{0} {1}", convertToFrenchText(wholePart), _currency);
+
+        if (decimalPart > 0)
+        {
+            frenchText += string.Format(" et {0} {1}", convertToFrenchText(decimalPart) , _decimals);
         }
 
         return frenchText;
