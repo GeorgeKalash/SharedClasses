@@ -423,7 +423,7 @@ namespace SharedClasses
                     return converter.ConvertToArabic();
                 case FRENCH:
                     CurrencyUnit currencyUnit = CurrencyUnitName.frenchUnits((CurrencyInfo.Currencies)_currencyProfileId);
-                    return NumberToFrenchTextConverter.currencyText((double) _amount, currencyUnit?.unitName, currencyUnit?.unitSubname  );
+                    return FrenchNumberConverter.currencyText((double) _amount, currencyUnit?.unitName, currencyUnit?.unitSubname  );
             }
 
             return null;
