@@ -8,6 +8,32 @@ namespace SharedClasses
 {
     public static class StringTools
     {
+
+        public static string alphabetIncrementer(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return "A";
+
+            char[] charArray = input.ToCharArray();
+            int index = charArray.Length - 1;
+
+            while (index >= 0)
+            {
+                if (charArray[index] == 'Z')
+                {
+                    charArray[index] = 'A';
+                    index--;
+                }
+                else
+                {
+                    charArray[index]++;
+                    break;
+                }
+            }
+
+            return new string(charArray);
+        }
+
         public static bool contains(this string source, string toCheck, StringComparison comp)
         {
             return source?.IndexOf(toCheck, comp) >= 0;
