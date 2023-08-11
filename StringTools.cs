@@ -8,7 +8,12 @@ namespace SharedClasses
 {
     public static class StringTools
     {
-
+        public static string ConvertNumberToStringWithLeadingZeroes(int number, int size)
+        {
+            string formatString = $"D{size}";
+            string result = number.ToString(formatString);
+            return result;
+        }
         public static string alphabetIncrementer(string input)
         {
             if (string.IsNullOrEmpty(input))
