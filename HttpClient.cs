@@ -17,14 +17,6 @@ public class HttpClient
         public string body;
     }
 
-    private void setHeaders(HttpWebRequest _request, Dictionary<string, string> _dict)
-    {
-        foreach (KeyValuePair<string, string> keyValuePair in _dict)
-            _request.Headers[keyValuePair.Key] = keyValuePair.Value;
-
-        _request.ContentType = "application/x-www-form-urlencoded";
-        _request.Accept = "application/json";
-    }
 
     private string responseStreamSync(HttpWebResponse _response)
     {
@@ -145,6 +137,16 @@ public class HttpClient
                 return new WebResponse() { HttpStatusCode = ((HttpWebResponse)ex.Response).StatusCode, body = await responseStream((HttpWebResponse)ex.Response) };
             }
     }
+
+    private void setHeaders(HttpWebRequest _request, Dictionary<string, string> _dict)
+    {
+        foreach (KeyValuePair<string, string> keyValuePair in _dict)
+            _request.Headers[keyValuePair.Key] = keyValuePair.Value;
+
+        _request.ContentType = "application/x-www-form-urlencoded";
+        _request.Accept = "application/json";
+    }
+
 
     public WebResponse getSync(string _url, Dictionary<string, string> _headers)
     {
