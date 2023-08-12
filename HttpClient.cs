@@ -7,10 +7,6 @@ using System.Threading.Tasks;
 
 public class HttpClient
 {
-    public HttpClient()
-    {
-    }
-
     public class WebResponse
     {
         public HttpStatusCode HttpStatusCode;
@@ -141,7 +137,8 @@ public class HttpClient
     private void setHeaders(HttpWebRequest _request, Dictionary<string, string> _dict)
     {
         foreach (KeyValuePair<string, string> keyValuePair in _dict)
-            _request.Headers[keyValuePair.Key] = keyValuePair.Value;
+            _request.Headers.Add(keyValuePair.Key, keyValuePair.Value);
+            //_request.Headers[keyValuePair.Key] = keyValuePair.Value;
 
         _request.ContentType = "application/x-www-form-urlencoded";
         _request.Accept = "application/json";
