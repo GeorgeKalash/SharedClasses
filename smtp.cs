@@ -1,6 +1,7 @@
 ﻿using System.Net.Mail;
 using System.Collections.Generic;
 using System;
+using System.Net;
 
 namespace SharedClasses
 {
@@ -18,6 +19,9 @@ namespace SharedClasses
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.UseDefaultCredentials = false;
             client.Credentials = new System.Net.NetworkCredential(_user, _pw);
+            
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
         }
 
         public bool sendEmail(string _fromAddress, string _toAddresses, string _subject, string _emailBody, string _ccAddresses = "", string _bccAddresses = "", List<Attachment> attachments = null)
