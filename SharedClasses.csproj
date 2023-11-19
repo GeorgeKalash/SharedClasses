@@ -58,6 +58,7 @@
     <Compile Include="DictionaryFromTextFile.cs" />
     <Compile Include="HttpClient.cs" />
     <Compile Include="KeyGenerator.cs" />
+    <Compile Include="ListTools.cs" />
     <Compile Include="NumberToFrenchTextConverter.cs" />
     <Compile Include="RawPrinterHelper.cs" />
     <Compile Include="RelationalData\TableMgr.cs" />
