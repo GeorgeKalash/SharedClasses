@@ -43,7 +43,26 @@ namespace SharedClasses
         {
             return source?.IndexOf(toCheck, comp) >= 0;
         }
+        static string hashString(string input)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                // Convert the input string to a byte array
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
 
+                // Compute the hash
+                byte[] hashBytes = sha256.ComputeHash(inputBytes);
+
+                // Convert the hash to a hexadecimal string
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hashBytes)
+                {
+                    sb.Append(b.ToString("x2"));
+                }
+
+                return sb.ToString();
+            }
+        }
         public static byte[] encode_SHA512(string input)
         {
             try
