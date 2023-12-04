@@ -43,7 +43,7 @@ namespace SharedClasses
         {
             return source?.IndexOf(toCheck, comp) >= 0;
         }
-        static string hashString(string input)
+        static public string hashString(string input)
         {
             using (SHA256 sha256 = SHA256.Create())
             {
