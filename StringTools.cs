@@ -8,6 +8,16 @@ namespace SharedClasses
 {
     public static class StringTools
     {
+        public static string getLastNCharacters(string input, int n)
+        {
+            if (input == null)
+                throw new ArgumentNullException(nameof(input));
+
+            if (n >= input.Length)
+                return input; // Return the entire string if n is greater than or equal to the length
+
+            return input.Substring(input.Length - n);
+        }
         public static string padLeft(string str, int width)
         {
             return str.PadLeft(width, '0');
