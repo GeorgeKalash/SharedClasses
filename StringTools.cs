@@ -8,6 +8,10 @@ namespace SharedClasses
 {
     public static class StringTools
     {
+        public static string padLeft(string str, int width)
+        {
+            return str.PadLeft(width, '0');
+        }
         public static string ConvertNumberToStringWithLeadingZeroes(int number, int size)
         {
             string formatString = $"D{size}";
