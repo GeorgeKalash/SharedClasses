@@ -70,6 +70,7 @@
     <Compile Include="ObjectTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringTools.cs" />
+    <Compile Include="TOTPGenerator.cs" />
     <Compile Include="XMLSerializer.cs" />
     <Compile Include="XMLTools.cs" />
   </ItemGroup>
