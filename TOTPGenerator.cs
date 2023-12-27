@@ -58,8 +58,7 @@ namespace SharedClasses
 
         private static long GetCurrentCounter()
         {
-            // TOTP uses a time step, typically 30 seconds.
-            var timeStep = 30;
+            var timeStep = 30; // 30 seconds
             var unixTimestamp = (long)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
             return unixTimestamp / timeStep;
         }
