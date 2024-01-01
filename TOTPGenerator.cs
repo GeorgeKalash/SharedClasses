@@ -9,10 +9,10 @@ namespace SharedClasses
 {
     public class TOTPGenerator
     {
-        public static string GenerateTOTP(string secret)
+        public static string GenerateTOTP(string _secret, int _secondsBack = 0)
         {
-            var key = Base32Decode(secret);
-            var counter = GetCurrentCounter();
+            var key = Base32Decode(_secret);
+            var counter = GetCurrentCounter(_secondsBack);
 
             using (var hmac = new HMACSHA1(key))
             {
@@ -56,10 +56,10 @@ namespace SharedClasses
             return bytes;
         }
 
-        private static long GetCurrentCounter()
+        private static long GetCurrentCounter(int _secondsBack = 0)
         {
             var timeStep = 30; // 30 seconds
-            var unixTimestamp = (long)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
+            var unixTimestamp = (long)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds - _secondsBack;
             return unixTimestamp / timeStep;
         }
     }
