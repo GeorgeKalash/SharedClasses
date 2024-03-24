@@ -128,12 +128,12 @@ namespace SharedClasses
                 case "@@bod":
                     {
                         DateTime? beginningOfTheDay = bod(DateTime.Now);
-                        return beginningOfTheDay == null ? string.Empty : ((DateTime)beginningOfTheDay).ToString("yyyyMMdd hh:mm");
+                        return beginningOfTheDay == null ? string.Empty : ((DateTime)beginningOfTheDay).ToString("yyyyMMdd HH:mm");
                     }
                 case "@@eod":
                     {
                         DateTime? eod = endOfDay(DateTime.Now);
-                        return eod == null ? string.Empty : ((DateTime)eod).ToString("yyyyMMdd hh:mm");
+                        return eod == null ? string.Empty : ((DateTime)eod).ToString("yyyyMMdd HH:mm");
                     }
                 case "@@eom":
                     return endOfMonth(DateTime.Now).ToString("yyyyMMdd");
