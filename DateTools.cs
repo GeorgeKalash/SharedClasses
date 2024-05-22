@@ -157,7 +157,7 @@ namespace SharedClasses
         }
         public static short? timeLapse(string _time1, string _time2, bool _signed)
         {
-            if (_time1 == _time2 && _time1 == midnight && _signed == false)
+            if (_time1 == _time2 && _signed == false)
                 return 24 * 60;
 
             if ((_time1 == null) || (_time2 == null) || (_time1 == "") || (_time2 == "") || (_time1 == _time2))
