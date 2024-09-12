@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 public class HttpClient
 {
@@ -13,6 +15,29 @@ public class HttpClient
         public string body;
     }
 
+    public static WebResponse post(string endPoint, string languageId, string jsonBody)
+    {
+        NameValueCollection nvc = HttpContext.Current.Request.Headers;
+        string token = nvc["Authorization"];
+
+        Dictionary<string, string> headers = new Dictionary<string, string>
+            {
+                { "Authorization", string.Format("Bearer {0}", token) },
+                { "LanguageId", languageId }
+            };
+        var postData = string.Format("record={0}", jsonBody);
+
+        HttpClient httpClient = new HttpClient();
+
+        HttpClient.WebResponse webResponse = httpClient.postSync(endPoint, headers, postData);
+
+        if (webResponse.HttpStatusCode != System.Net.HttpStatusCode.OK && webResponse.HttpStatusCode != System.Net.HttpStatusCode.SeeOther)
+        {
+            throw new Exception(string.Format("request {0} error {1}", endPoint, webResponse.HttpStatusCode));
+        }
+
+        return webResponse;
+    }
 
     private string responseStreamSync(HttpWebResponse _response)
     {
