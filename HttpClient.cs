@@ -15,11 +15,8 @@ public class HttpClient
         public string body;
     }
 
-    public static WebResponse post(string endPoint, string languageId, string jsonBody)
+    public static WebResponse post(string token, string endPoint, string languageId, string jsonBody)
     {
-        NameValueCollection nvc = HttpContext.Current.Request.Headers;
-        string token = nvc["Authorization"];
-
         Dictionary<string, string> headers = new Dictionary<string, string>
             {
                 { "Authorization", string.Format("Bearer {0}", token) },
