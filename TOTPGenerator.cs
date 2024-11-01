@@ -7,21 +7,29 @@ using System.Threading.Tasks;
 
 namespace SharedClasses
 {
+    using System;
+    using System.Security.Cryptography;
+    using System.Text;
+
     public class TOTPGenerator
     {
-        public static string GenerateTOTP(string _secret, int _secondsBack = 0, int _timeStep = 60)
+        public static string GenerateTOTP(string _secret, int _secondsBack = 0, int _timeStep = 30)
         {
             var key = Base32Decode(_secret);
-            var counter = GetCurrentCounter(_timeStep,_secondsBack);
+            var counter = GetCurrentCounter(_timeStep, _secondsBack);
+
+            // Convert counter to byte array in big-endian format
+            var counterBytes = BitConverter.GetBytes(counter);
+            Array.Reverse(counterBytes);  // Reverse to big-endian
 
             using (var hmac = new HMACSHA1(key))
             {
-                var result = hmac.ComputeHash(BitConverter.GetBytes(counter));
+                var result = hmac.ComputeHash(counterBytes);
                 int offset = result[result.Length - 1] & 0x0F;
                 int binary = ((result[offset] & 0x7F) << 24)
-                    | ((result[offset + 1] & 0xFF) << 16)
-                    | ((result[offset + 2] & 0xFF) << 8)
-                    | (result[offset + 3] & 0xFF);
+                             | ((result[offset + 1] & 0xFF) << 16)
+                             | ((result[offset + 2] & 0xFF) << 8)
+                             | (result[offset + 3] & 0xFF);
 
                 var otp = binary % 1000000;
                 return otp.ToString("D6");
@@ -62,4 +70,5 @@ namespace SharedClasses
             return unixTimestamp / _timeStep;
         }
     }
+
 }
