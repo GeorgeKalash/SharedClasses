@@ -13,10 +13,11 @@ namespace SharedClasses
 
     public class TOTPGenerator
     {
-        public static string GenerateTOTP(string _secret, int _secondsBack = 0, int _timeStep = 30)
+        const int TIME_INTERVAL = 30;
+        public static string GenerateTOTP(string _secret, int _secondsBack = 0)
         {
             var key = Base32Decode(_secret);
-            var counter = GetCurrentCounter(_timeStep, _secondsBack);
+            var counter = GetCurrentCounter(TIME_INTERVAL, _secondsBack);
 
             // Convert counter to byte array in big-endian format
             var counterBytes = BitConverter.GetBytes(counter);
