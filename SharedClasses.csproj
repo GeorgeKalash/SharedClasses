@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CryptoTools.cs" />
+    <Compile Include="FileCompressor.cs" />
     <Compile Include="ConfigTools.cs" />
     <Compile Include="DataStructure\Graph.cs" />
     <Compile Include="DataStructure\MergeSort.cs" />
