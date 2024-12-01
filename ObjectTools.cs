@@ -173,7 +173,7 @@ namespace SharedClasses
 
             foreach (var property in propertyInfos)
             {
-                double? value = numericValue(property.Value, property.Type);
+                decimal? value = numericValue(property.Value, property.Type);
 
                 if (value != null)
                 {
@@ -184,18 +184,18 @@ namespace SharedClasses
 
         }
 
-        private static Double? numericValue(object value, Type type)
+        private static Decimal? numericValue(object value, Type type)
         {
             if (type.IsEnum || (Nullable.GetUnderlyingType(type) != null && Nullable.GetUnderlyingType(type).IsEnum))
             {
                 if (!Enum.IsDefined(type, value))
-                    return Convert.ToDouble(value);
+                    return Convert.ToDecimal(value);
 
                 var display = type.GetField(value.ToString()).GetCustomAttribute<DisplayAttribute>();
                 if (display != null)
-                    return Convert.ToDouble(display.Name);
+                    return Convert.ToDecimal(display.Name);
 
-                return Convert.ToDouble(value);
+                return Convert.ToDecimal(value);
             }
             return null;
         }
