@@ -46,12 +46,14 @@ namespace SharedClasses
                 else
                 {
                     charArray[index]++;
-                    break;
+                    return new string(charArray);
                 }
             }
 
-            return new string(charArray);
+            // If we exit the loop, it means all characters were 'Z'
+            return "A" + new string(charArray);
         }
+
 
         public static bool contains(this string source, string toCheck, StringComparison comp)
         {
