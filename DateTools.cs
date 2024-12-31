@@ -143,6 +143,14 @@ namespace SharedClasses
             return value;
         }
 
+        public static string MinutesToHHmm(int totalMinutes)
+        {
+            int hours = totalMinutes / 60;
+            int minutes = totalMinutes % 60;
+            return $"{hours}:{minutes:D2}";
+        }
+
+
         public static short? hour(string _time)
         {
             if (short.TryParse(_time.Substring(0, 2), out short hour) == false)
