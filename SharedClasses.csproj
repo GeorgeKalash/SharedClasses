@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArgusMapper.cs" />
     <Compile Include="CryptoTools.cs" />
     <Compile Include="FileCompressor.cs" />
     <Compile Include="ConfigTools.cs" />
